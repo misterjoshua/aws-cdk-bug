@@ -4,6 +4,9 @@ pipelines:
     - step:
         caches:
           - node
+          - docker
+        services:
+          - docker
         script:
           - yarn
           - yarn cdk synth
