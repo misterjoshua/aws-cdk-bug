@@ -1,16 +1,12 @@
 import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
 import { CfnOutput } from '@aws-cdk/core';
+import * as nodejs from '@aws-cdk/aws-lambda-nodejs';
 
 export class BugStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const fn = new lambda.Function(this, 'fn', {
-      runtime: lambda.Runtime.NODEJS_12_X,
-      code: lambda.Code.fromAsset('./lib'),
-      handler: 'bug-handler.handler',
-    });
+    const fn = new nodejs.NodejsFunction(this, 'handler');
 
     new CfnOutput(this, 'output', {
       value: fn.functionName,
