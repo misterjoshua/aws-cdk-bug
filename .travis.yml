@@ -1,0 +1,5 @@
+language: generic
+
+script:
+  - yarn
+  - yarn cdk synth
